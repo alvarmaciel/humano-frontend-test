@@ -38,9 +38,11 @@ const getters = {
 
 const actions = {
     getSocies({ commit }) {
+      commit('SET_PROGRESS', true, { root: true })
       axios.get('https://humano-backend-test.herokuapp.com/api/v1/socies/')
           .then(response => {
               commit('SET_SOCIES', response.data)
+              commit('SET_PROGRESS', false, { root: true })
             })
    },
     addSocie({ commit, dispatch }){
@@ -53,11 +55,13 @@ const actions = {
 			socie.descripcion = ''
 		}
 		console.log("STORE", socie)
-        commit('SET_EDIT', false, { root: true } )	
+       commit('SET_PROGRESS', true, { root: true })
+       commit('SET_EDIT', false, { root: true } )	
 		axios.post('https://humano-backend-test.herokuapp.com/api/v1/socies/', socie)
 			.then(response => {
-                commit('SET_ALERT', null, { root: true })	
-				console.log("CREADO", response)
+             commit('SET_PROGRESS', false, { root: true })
+             commit('SET_ALERT', null, { root: true })	
+			console.log("CREADO", response)
 				dispatch('getSocies')
 				dispatch('getSocieById', response.data.id)
                 console.log("SOCIE ID", response.data.id)
@@ -72,6 +76,7 @@ const actions = {
 			.catch(function (error) {
 				console.log(error);
 				commit('SET_DIALOG_ERROR', null, { root: true } )
+                commit('SET_PROGRESS', false, { root: true })
 				state.socieEdit = {
 					proveedor:false,
 					adherente: true,

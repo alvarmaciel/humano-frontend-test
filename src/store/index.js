@@ -15,6 +15,7 @@ const state = {
     dialogError:false,
     alert: false,
     edit: false,
+    progress: false
 }
 
 //to handle state
@@ -52,7 +53,12 @@ const mutations = {
 	},
 	SET_ALERT(state) {
 		state.alert = true
+	},
+	SET_PROGRESS(state, value) {
+		state.progress = value
+        console.log('PROGRESS', state.progress)
 	}
+
 }
 
 //export store module

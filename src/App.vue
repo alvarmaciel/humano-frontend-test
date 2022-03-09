@@ -70,10 +70,16 @@
     </v-navigation-drawer>
 
     <v-main>
-     <v-alert type="success" :value="$store.state.alert" transition="slide-y-transition" icon="mdi-cannabis">
+     <v-progress-linear
+        indeterminate
+        color="green"
+        stripped
+        v-show="$store.state.progress"
+     ></v-progress-linear>
+      <v-alert type="success" :value="$store.state.alert" transition="slide-y-transition" icon="mdi-cannabis">
          Registro Guardado
      </v-alert>
-        <router-view></router-view>
+       <router-view></router-view>
         <v-dialog
             v-model="$store.state.dialogError"
             width="500"
