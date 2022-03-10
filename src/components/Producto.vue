@@ -9,7 +9,7 @@
           <v-form v-model="isValid" ref="form">
            <v-row>
               <v-autocomplete
-                  :items="socies"
+                  :items="sociesH"
                   item-value="id"
                   item-text="codigo"
                   placeholder="Socie"
@@ -23,7 +23,7 @@
                     {{ data.item.codigo }} <span v-show="data.item.codigo"> - </span> {{ data.item.nombre }}
                   </template>
                 <template slot="item" slot-scope="data">
-                  {{ data.item.codigo }} <span v-show="data.item.codigo"> - </span> {{ data.item.nombre }}
+                  {{ data.item.codigo }} <span v-show="data.item.codigo">&nbsp; &nbsp;</span> {{ data.item.nombre }}
                 </template>
               </v-autocomplete>
             </v-row>
@@ -177,7 +177,7 @@ export default {
             'socie'
         ]),
         ...mapGetters('socies', [
-            'socies'
+            'sociesH'
         ])
     },
     mounted() {
