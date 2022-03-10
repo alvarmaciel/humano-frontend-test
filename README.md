@@ -1,4 +1,4 @@
-# vue-django
+# vue-django para Humano
 
 ## Project setup
 ```
