@@ -35,9 +35,12 @@ const actions = {
       })
   },
   getProductos({ commit }) {
-      axios.get('https://humano-backend-test.herokuapp.com/api/v1/productos/')
+    commit('SET_PROGRESS', true, { root: true })
+     axios.get('https://humano-backend-test.herokuapp.com/api/v1/productos/')
           .then(response => {
                 commit('SET_PRODUCTOS', response.data)
+                commit('SET_PROGRESS', false, { root: true })
+
             })
   },
   addProducto({ commit, dispatch }){

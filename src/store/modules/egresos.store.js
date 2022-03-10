@@ -13,10 +13,12 @@ const getters = {
 
 const actions = {
  getEgresos({ commit }) {
-      axios.get('https://humano-backend-test.herokuapp.com/api/v1/salidas/')
+     commit('SET_PROGRESS', true, { root: true })
+     axios.get('https://humano-backend-test.herokuapp.com/api/v1/salidas/')
           .then(response => {
               commit('SET_EGRESOS', response.data)
-              // console.log("get", response.data)
+              commit('SET_PROGRESS', false, { root: true })
+            // console.log("get", response.data)
             })
   },
 
